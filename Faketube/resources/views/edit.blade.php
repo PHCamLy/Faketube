@@ -16,7 +16,7 @@
         </div>
     </div>
    
-    @if ($errors->any())
+     @if ($errors->any())
         <div class="alert alert-danger">
             <strong>Whoops!</strong> There were some problems with your input.<br><br>
             <ul>
@@ -25,7 +25,7 @@
                 @endforeach
             </ul>
         </div>
-    @endif
+    @endif 
   
     <form action="{{ route('chanels.update',$chanel->id) }}" method="POST">
         @csrf
@@ -33,7 +33,7 @@
         <div class="row mb-3">
                 <label class="col-sm-2 col-label-form">Name</label>
                 <div class="col-sm-10">
-                    <input type="text" name="Name" class="form-control" value="{{ $chanel->ChanelName }}" />
+                    <input type="text" name="ChanelName" class="form-control" value="{{ $chanel->ChanelName }}" />
                 </div>
             </div>
 
@@ -48,7 +48,7 @@
             <div class="row mb-3">
                 <label class="col-sm-2 col-label-form">SubscribersCount</label>
                 <div class="col-sm-10">
-                    <input type="text" name="SubscribersCount" class="form-control" value="{{ $chanel->SubscribersCount }}" />
+                    <input type="number" name="SubscribersCount" class="form-control" value="{{ $chanel->SubscribersCount }}" />
                 </div>
             </div>
             <div class="row mb-3">

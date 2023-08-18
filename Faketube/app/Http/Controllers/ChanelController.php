@@ -9,10 +9,14 @@ class ChanelController extends Controller
 {
     public function index()
     {
-        $chanels = Chanel::latest()->paginate(25);
+       // $chanels = Chanel::latest()->paginate(25);
         
-        return view('index',compact('chanels'))
-                    ->with('i', (request()->input('page', 1) - 1) * 5);
+        //return view('index',compact('chanels'))->with('i', (request()->input('page', 1) - 1) * 5);
+                    
+
+                    $chanels = Chanel::oldest()->paginate(10); 
+ 
+         return view('index', compact('chanels'))->with('i', (request()->input('page', 1) - 1) * 5);
         
     }
     public function create()
@@ -38,7 +42,6 @@ public function store(Request $request)
     $chanel -> ChanelName = $request->ChanelName;       
     $chanel -> Description = $request->Description;       
     $chanel -> SubscribersCount= $request->SubscribersCount;    
-
     $chanel -> URL = $request->URL;     
        
     $chanel->save();
@@ -81,7 +84,7 @@ public function show(string $id)
              
 
         $chanel->save();
-        return redirect()->route('employees.index')
+        return redirect()->route('chanels.index')
                        ->with('success','Chanel updated successfully');
 
         
@@ -95,7 +98,7 @@ public function show(string $id)
     }
     
     $chanel->delete();
-    return redirect()->route("chanels.index")->with('success', 'Employee deleted successfully.');
+    return redirect()->route("chanels.index")->with('success', 'chanel deleted successfully.');
 }
 
 }
